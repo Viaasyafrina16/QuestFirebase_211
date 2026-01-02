@@ -1,5 +1,6 @@
 package com.example.firebasepraktikum.Repository
 
+import android.app.Application
 import kotlin.getValue
 
 interface ContainerApp {
