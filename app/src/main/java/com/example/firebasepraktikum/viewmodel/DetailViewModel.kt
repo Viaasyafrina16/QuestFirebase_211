@@ -30,30 +30,16 @@ class DetailViewModel(savedStateHandle: SavedStateHandle, private val repository
     init {
         getSatuSiswa()
     }
-    fun getSatuSiswa(){
+    fun getSatuSiswa() {
         viewModelScope.launch {
             statusUIDetail = StatusUIDetail.loading
             statusUIDetail = try {
-                StatusUIDetail.Success(satusiswa = repositorySiswa.getSatuSiswa(idSiswa) )
-            }
-            catch (e: IOException){
+                StatusUIDetail.Success(
+                    satusiswa = repositorySiswa.getSatuSiswa(idSiswa)
+                )
+            } catch (e: IOException) {
                 StatusUIDetail.Error
-            }
-            catch (e: Exception){
-                StatusUIDetail.Error
-            }
-        }
-    }
-    fun getSatuSiswa(){
-        viewModelScope.launch {
-            statusUIDetail = StatusUIDetail.loading
-            statusUIDetail = try {
-                StatusUIDetail.Success(satusiswa = repositorySiswa.getSatuSiswa(idSiswa) )
-            }
-            catch (e: IOException){
-                StatusUIDetail.Error
-            }
-            catch (e: Exception){
+            } catch (e: Exception) {
                 StatusUIDetail.Error
             }
         }
