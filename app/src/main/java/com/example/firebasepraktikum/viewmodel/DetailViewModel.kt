@@ -4,8 +4,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.firebasepraktikum.ModelData.Siswa
+import com.example.firebasepraktikum.Repository.RepositorySiswa
 import com.example.firebasepraktikum.view.Route.DestinasiDetail
+import kotlinx.coroutines.launch
 import java.io.IOException
 
 sealed interface StatusUIDetail {
@@ -13,7 +17,8 @@ sealed interface StatusUIDetail {
     object Error : StatusUIDetail
     object loading : StatusUIDetail
 }
-class DetailViewModel(savedStateHandle: SavedStateHandle, private val repositorySiswa: RepositorySiswa):ViewModel() {
+class DetailViewModel(savedStateHandle: SavedStateHandle, private val repositorySiswa: RepositorySiswa):
+    ViewModel() {
 
     private val idSiswa: Long =
         savedStateHandle.get<String>(DestinasiDetail.itemIdArg)?.toLong()
